@@ -2,10 +2,11 @@ Specjalny wersja dla lubi¹cych czytaæ po polsku ;]
 Prosty programik, umo¿liwiaj¹cy:
 -Zapis wydatków
 -Podsumowanie poszczególnego dnia/dni
--Specjalnie w jêzyku polskim zosta³a zrobiona mapa "mózgu" dla zapisu
+-Specjalnie w jêzyku polskim zosta³a zrobiona mapa "mózgu" dla zapisu zarowno zwyklego(przez program, jak i recznego)
 Czego nie umo¿liwia(lub znaleziono b³êdy):
--Wrzucanie wed³ug wzorca do folderu(dla przyk³adu dni z poziomu folderu nie mo¿na dodaæ ),
--Podsumowanie wed³ug zadanego okresu nie jest w pe³ni przetestowane. Od razu przy zapisie dopisuje do pliku SUMMARY.txt ile zostalo wydane w danym dniu. Ktos móg³y póŸniej dodaæ w zadanym dniu i by³aby kiszka. Oczywiœcie plik SUMMARY.txt jest czyszczony, dziêki temu sprawdza zawartoœæ pliku, ale jednak ryzyko pozostaje. Nale¿y odczytaæ tylko ostatni¹ linijkê, ca³kowicie ignoruj¹c pojawiaj¹ce siê errory pod tytu³em "Something error..."
+-Reczne dodawanie nie zostalo sprawdzone i dla prostoty wszystko zostalo sprowadzone do pliku txt
+-Podsumowanie wed³ug zadanego okresu nie jest w pe³ni przetestowane. Od razu przy zapisie dopisuje do pliku SUMMARY.txt ile zostalo wydane w danym dniu. Ktos móg³y póŸniej
+dodaæ w zadanym dniu i by³aby kiszka. Oczywiœcie plik SUMMARY.txt jest czyszczony, dziêki temu sprawdza zawartoœæ pliku, ale jednak ryzyko pozostaje. Nale¿y odczytaæ tylko ostatni¹ linijkê, ca³kowicie ignoruj¹c pojawiaj¹ce siê errory pod tytu³em "Something error..."
 -Program zosta³ napisany idiototoodpotny, st¹d czêsto zdarza siê, ¿e wypisz b³¹d, którego nie powinien rzuciæ. Jeœli wszystko dzia³a dobrze, nale¿y to zignorowaæ.
 
 Mi³ej zabawy ;]
