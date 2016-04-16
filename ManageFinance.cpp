@@ -138,11 +138,11 @@ public:
             fourthTemplateString=forwarding()->testFourth();
 
 
-        ///Here is all test
-        ///std::cout<<firstTempString<<'\n'<<
-       /// secondTemplateString<<'\n';
-   /// int length=firstTempString.length();
-    ///std::cout<<"Length: "<<length<<'\n';
+            ///Here is all test
+            ///std::cout<<firstTempString<<'\n'<<
+            /// secondTemplateString<<'\n';
+            /// int length=firstTempString.length();
+            ///std::cout<<"Length: "<<length<<'\n';
 
             int thirdTest=std::atoi(thirdTemplateString.c_str());
             int fourthTest=std::atoi(fourthTemplateString.c_str());///I don't know, why this gave a false
@@ -189,7 +189,7 @@ class VirtualForTest
       virtual void doubleTest(double &in)=0;
       virtual int doubleToInt(const double)=0;
 };
-class Testing:VirtualForTest
+class Testing: public VirtualForTest
 {
 
 
@@ -604,20 +604,21 @@ int main()
 
     std::cout<<"Local time was properly downloaded"<<'\n';
 
-
+    VirtualForTest *V_F_T;
     Testing t1;
+    V_F_T=&t1;
     double decision;
     std::cout<<"______________________________________________________________________________"<<'\n';
     std::cout<<"1.Open file\n2.Save File\n3.Exit Program"<<'\n';
-    t1.doubleTest(decision);
+    V_F_T->doubleTest(decision);
     if(decision==1)
     {
 
         double userDecision;
         printf("%s","Show day, select 1.\n Show days, enter 2.\n Back? Press 3.\n");
 
-        t1.doubleTest(userDecision);
-        int property=t1.doubleToInt(userDecision);
+        V_F_T->doubleTest(userDecision);
+        int property=V_F_T->doubleToInt(userDecision);
 
 
         VirtualOpening *V_O;
@@ -630,8 +631,8 @@ int main()
         {
             printf("%s","Which day show? \n");
             double which;
-        t1.doubleTest(which);
-        int convertWhicht=t1.doubleToInt(which);
+        V_F_T->doubleTest(which);
+        int convertWhicht=V_F_T->doubleToInt(which);
 
             std::string fileName=V_O->issetRecord(convertWhicht);
         V_O->opening(fileName);
@@ -644,8 +645,8 @@ int main()
         {
             printf("%s","How many days? \n");
             double which;
-        t1.doubleTest(which);
-        int convertWhicht=t1.doubleToInt(which);
+        V_F_T->doubleTest(which);
+        int convertWhicht=V_F_T->doubleToInt(which);
             V_O->opening(convertWhicht);
             for(int i=0;i<=convertWhicht;i++){
         std::string fileName=V_O->issetRecord(i);
@@ -699,17 +700,18 @@ int main()
     std::cout<<'\n'<<'\n'<<'\n';
     std::cout<<"______________________________________________________________________________"<<'\n';
     std::string name="";
+    std::cin.ignore();
     std::cout<<"Enter, name your items: "<<'\n';
     while(name=="")std::getline(std::cin,name);
     double unitPrice;
     std::cout<<"______________________________________________________________________________"<<'\n';
    std::cout<<"Okay, now enter unit price this item: "<<'\n';
 
-    t1.doubleTest(unitPrice);
+    V_F_T->doubleTest(unitPrice);
     double howMany;
     std::cout<<"______________________________________________________________________________"<<'\n';
    std::cout<<"How many items you bought ?"<<'\n';
-    t1.doubleTest(howMany);
+    V_F_T->doubleTest(howMany);
 
     ClassForSaving c1;
     unexpectedBehavior o1(&c1,unitPrice);
