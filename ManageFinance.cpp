@@ -451,12 +451,12 @@ bool ClassForOpening::issetRecord(std::string concatenation,const bool show=fals
 void ClassForOpening::opening(std::string fileName,const bool showDate=0)
 {
 
-    std::ifstream fileOpen;
+    std::ifstream fileOpen;///I don't close this file
     fileOpen.open(fileName+".txt",ifstream::in);
 
     double howManyMoneySpent=0
     ,templateForDouble=1;
-    if(fileOpen)
+    if(fileOpen.is_open())
     {
         int
         nameIterator=1
@@ -537,6 +537,7 @@ void ClassForOpening::opening(std::string fileName,const bool showDate=0)
 
 
         }
+        fileOpen.close();
         std::ofstream filefile;
         filefile.open(SUMMARYDAY,std::ofstream::out | std::ofstream::app);
         filefile<<howManyMoneySpent<<'\n';
@@ -544,7 +545,11 @@ void ClassForOpening::opening(std::string fileName,const bool showDate=0)
         filefile.close();
 
     }
-    else std::cout<<"Something error..."<<'\n';
+    else
+    {
+        if(!showDate)std::cerr<<"Something error..."<<'\n';
+
+    }
 
 
 
@@ -635,6 +640,7 @@ int main()
         int convertWhicht=V_F_T->doubleToInt(which);
 
             std::string fileName=V_O->issetRecord(convertWhicht);
+
         V_O->opening(fileName);
 
 
@@ -650,7 +656,7 @@ int main()
             V_O->opening(convertWhicht);
             for(int i=0;i<=convertWhicht;i++){
         std::string fileName=V_O->issetRecord(i);
-        V_O->opening(fileName,1);
+        if(fileName!="-1")V_O->opening(fileName,1);
         }
         std::cout<<"______________________________________________________________________________"<<'\n';
         std::cout<<"\n\n\n\n\n\n\n\n\n"<<'\n';
