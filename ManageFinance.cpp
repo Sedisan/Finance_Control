@@ -325,7 +325,7 @@ class VirtualOpening
       virtual void opening(std::string,const bool=0)=0;
       virtual bool issetRecord(std::string,const bool)=0;
       virtual std::string issetRecord(const int number)=0;
-      virtual void opening(int)=0;
+      virtual int opening(int)=0;
 
 };
 
@@ -337,16 +337,16 @@ class ClassForOpening:public VirtualOpening
     virtual void opening(std::string,const bool);
     virtual bool issetRecord(std::string concatenation,const bool);
     virtual std::string issetRecord(const int number);
-    virtual void opening(int);
+    virtual int opening(int);
 
 };
-void ClassForOpening::opening(int howManyBack=30)
+int ClassForOpening::opening(int howManyBack=30)
 {
     std::ifstream ff;
     ff.open(SUMMARYDAY,std::ifstream::in);
     std::string whering;
-    int number=1;
-    int howManySpent=0;
+    int number=1
+    ,howManySpent=0;
     if(ff){
     while(std::getline(ff,whering))
     {
@@ -371,12 +371,13 @@ void ClassForOpening::opening(int howManyBack=30)
         actualNumber++;
     }
 
-    std::cout<<"In last: "<<howManyBack<<" days, you spent: "<<howManySpent<<'\n';
-
+    //std::cout<<"In last: "<<howManyBack<<" days, you spent: "<<howManySpent<<'\n';
+    return howManySpent;
 
     ff.close();
     }
     else std::cerr<<"Something error..."<<'\n';
+    return -1;
 }
 
 std::string ClassForOpening::issetRecord(const int number)
@@ -658,10 +659,12 @@ int main()
         std::string fileName=V_O->issetRecord(i);
         if(fileName!="-1")V_O->opening(fileName,1);
         }
-        std::cout<<"______________________________________________________________________________"<<'\n';
-        std::cout<<"\n\n\n\n\n\n\n\n\n"<<'\n';
-        std::cout<<"______________________________________________________________________________"<<'\n';
-        V_O->opening(convertWhicht);
+
+        int howMany=V_O->opening(convertWhicht);
+
+
+        std::cout<<"In this range, you spent: "<<howMany<<'\n';
+
        // main();
         }
         else
