@@ -64,9 +64,6 @@ public:
     std::string actualTime=ctime(&downloadTime);
 
 
-
-
-
     firstTempString=actualTime.substr(0,3);
     secondTemplateString=actualTime.substr(4,3);
     thirdTemplateString=actualTime.substr(8,2);
@@ -279,10 +276,10 @@ class Obserwer
   ClassForSaving *model;
   double multiplitation;
   public:
-      Obserwer(ClassForSaving *c1,double m)
+      Obserwer(ClassForSaving *objClassSaving,double m)
         {
             multiplitation=m;
-            model=c1;
+            model=objClassSaving;
             model->push(this);
         }
         virtual void update()=0;
@@ -388,24 +385,24 @@ std::string ClassForOpening::issetRecord(const int number)
 
     if(fileOpen)
     {
-        int which_Number=1;
+        int whichNumber=1;
         std::string whereGo;
         while(std::getline(fileOpen,whereGo))
         {
 
-            switch(which_Number)
+            switch(whichNumber)
             {
             default:
                 {
 
-                if(which_Number==number)
+                if(whichNumber==number)
                 {
                     return whereGo;
                 }
 
                 }
             }
-            which_Number++;
+            whichNumber++;
         }
 
 
@@ -417,20 +414,20 @@ bool ClassForOpening::issetRecord(std::string concatenation,const bool show=fals
 {
     std::ifstream fileOpen;
     fileOpen.open(DATABASE,ifstream::in);
-
+#undef DATABASE
 
     if(fileOpen)
     {
-        int which_Number=1;
+        int whichNumber=1;
         std::string whereGo;
         while(std::getline(fileOpen,whereGo))
         {
 
-            switch(which_Number)
+            switch(whichNumber)
             {
             default:
                 {
-                if(show)std::cout<<which_Number<<"."<<whereGo<<'\n';
+                if(show)std::cout<<whichNumber<<"."<<whereGo<<'\n';
 
 
                     if(whereGo==concatenation && !(show))
@@ -441,7 +438,7 @@ bool ClassForOpening::issetRecord(std::string concatenation,const bool show=fals
                     }
                 }
             }
-            which_Number++;
+            whichNumber++;
         }
 
 
@@ -452,7 +449,7 @@ bool ClassForOpening::issetRecord(std::string concatenation,const bool show=fals
 void ClassForOpening::opening(std::string fileName,const bool showDate=0)
 {
 
-    std::ifstream fileOpen;///I don't close this file
+    std::ifstream fileOpen;
     fileOpen.open(fileName+".txt",ifstream::in);
 
     double howManyMoneySpent=0
@@ -548,7 +545,7 @@ void ClassForOpening::opening(std::string fileName,const bool showDate=0)
     }
     else
     {
-        if(!showDate)std::cerr<<"Something error..."<<'\n';
+        std::cerr<<"Something error..."<<'\n';
 
     }
 
@@ -557,14 +554,14 @@ void ClassForOpening::opening(std::string fileName,const bool showDate=0)
 
 }
 
-void where(Mainer *m1,std::string fileName,std::string nameItem,int unitPrice,int howMany)
+void where(Mainer *mObj,std::string fileName,std::string nameItem,int unitPrice,int howMany)
 {
-m1->saving( fileName, nameItem,unitPrice, howMany);
+mObj->saving( fileName, nameItem,unitPrice, howMany);
 
-VirtualOpening *V_O;
+VirtualOpening *virtForOpen;
 ClassForOpening checkThisOut;
-V_O=&checkThisOut;
-if(!(V_O->issetRecord(fileName,0)))m1->baseSaving(fileName);
+virtForOpen=&checkThisOut;
+if(!(virtForOpen->issetRecord(fileName,0)))mObj->baseSaving(fileName);
 }
 
 void ClassForSaving::notify()
@@ -586,63 +583,64 @@ class End:public VirtualForEnd
 void End::end_Program()
 {
     std::cout<<"Thank for use! Program has been created by: "<<AUTHOR<<'\n';
+    #undef AUTHOR
         exit(0);
 }
-void redict(VirtualForEnd *x)
+void redirect(VirtualForEnd *whereRed)
 {
-    x->end_Program();
+    whereRed->end_Program();
 }
 
 int main()
 {
     std::cout<<"______________________________________________________________________________"<<'\n';
-    ConnectTime c15;
-    FinaleObserwing o(&c15);
+    ConnectTime cObj;
+    FinaleObserwing fObj(&cObj);
 
-    o.updating();
+    fObj.updating();
 
 
     Timing *time;
-    time=&c15;
+    time=&cObj;
     std::string concatenation=time->getTime();
 
 
 
     std::cout<<"Local time was properly downloaded"<<'\n';
 
-    VirtualForTest *V_F_T;
+    VirtualForTest *virtForTest;
     Testing t1;
-    V_F_T=&t1;
+    virtForTest=&t1;
     double decision;
     std::cout<<"______________________________________________________________________________"<<'\n';
     std::cout<<"1.Open file\n2.Save File\n3.Exit Program"<<'\n';
-    V_F_T->doubleTest(decision);
+    virtForTest->doubleTest(decision);
     if(decision==1)
     {
 
         double userDecision;
         printf("%s","Show day, select 1.\n Show days, enter 2.\n Back? Press 3.\n");
 
-        V_F_T->doubleTest(userDecision);
-        int property=V_F_T->doubleToInt(userDecision);
+        virtForTest->doubleTest(userDecision);
+        int property=virtForTest->doubleToInt(userDecision);
 
 
-        VirtualOpening *V_O;
+        VirtualOpening *virtForOpen;
         ClassForOpening oP;
-        V_O=&oP;
+        virtForOpen=&oP;
 
-        V_O->issetRecord(concatenation,1);
+        virtForOpen->issetRecord(concatenation,1);
 
         if(property==1)
         {
             printf("%s","Which day show? \n");
             double which;
-        V_F_T->doubleTest(which);
-        int convertWhicht=V_F_T->doubleToInt(which);
+        virtForTest->doubleTest(which);
+        int convertWhicht=virtForTest->doubleToInt(which);
 
-            std::string fileName=V_O->issetRecord(convertWhicht);
+            std::string fileName=virtForOpen->issetRecord(convertWhicht);
 
-        V_O->opening(fileName);
+        virtForOpen->opening(fileName);
 
 
         //main();
@@ -652,15 +650,15 @@ int main()
         {
             printf("%s","How many days? \n");
             double which;
-        V_F_T->doubleTest(which);
-        int convertWhicht=V_F_T->doubleToInt(which);
-            V_O->opening(convertWhicht);
+        virtForTest->doubleTest(which);
+        int convertWhicht=virtForTest->doubleToInt(which);
+            virtForOpen->opening(convertWhicht);
             for(int i=0;i<=convertWhicht;i++){
-        std::string fileName=V_O->issetRecord(i);
-        if(fileName!="-1")V_O->opening(fileName,1);
+        std::string fileName=virtForOpen->issetRecord(i);
+        if(fileName!="-1")virtForOpen->opening(fileName,1);
         }
 
-        int howMany=V_O->opening(convertWhicht);
+        int howMany=virtForOpen->opening(convertWhicht);
 
 
         std::cout<<"In this range, you spent: "<<howMany<<'\n';
@@ -669,12 +667,12 @@ int main()
         }
         else
         {
-            VirtualForEnd *V_End;
+            VirtualForEnd *virtForEnd;
 
-            End e1;
+            End endObj;
 
-            V_End=&e1;
-            redict(V_End);
+            virtForEnd=&endObj;
+            redirect(virtForEnd);
         }
 
 
@@ -696,12 +694,12 @@ int main()
     }
     if(decision!=2)
     {
-        VirtualForEnd *V_End;
+        VirtualForEnd *virtForEnd;
 
-            End e1;
+            End endObj;
 
-            V_End=&e1;
-            redict(V_End);
+            virtForEnd=&endObj;
+            redirect(virtForEnd);
     }
 
 
@@ -716,15 +714,15 @@ int main()
     std::cout<<"______________________________________________________________________________"<<'\n';
    std::cout<<"Okay, now enter unit price this item: "<<'\n';
 
-    V_F_T->doubleTest(unitPrice);
+    virtForTest->doubleTest(unitPrice);
     double howMany;
     std::cout<<"______________________________________________________________________________"<<'\n';
    std::cout<<"How many items you bought ?"<<'\n';
-    V_F_T->doubleTest(howMany);
+    virtForTest->doubleTest(howMany);
 
-    ClassForSaving c1;
-    unexpectedBehavior o1(&c1,unitPrice);
-    c1.setVar(howMany);
+    ClassForSaving objClassSaving;
+    unexpectedBehavior o1(&objClassSaving,unitPrice);
+    objClassSaving.setVar(howMany);
 
 
 
@@ -740,9 +738,9 @@ int main()
     //std::cout<<"penniesNumber: "<<howManyInPenniesNumber<<'\n';
    // std::cout<<"penniesNumber: "<<(double)howManyInPenniesNumber/100<<'\n';
 
-    Mainer *m1;
-    m1=&c1;
-    where(m1,concatenation,name,unitPriceInPennies,howManyInPenniesNumber);
+    Mainer *mObj;
+    mObj=&objClassSaving;
+    where(mObj,concatenation,name,unitPriceInPennies,howManyInPenniesNumber);
 
 
 
