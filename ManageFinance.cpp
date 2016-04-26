@@ -604,7 +604,7 @@ int main()
     time=&cObj;
     std::string concatenation=time->getTime();
 
-
+ std::cout<<"HELLO!"<<'\n';
 
     std::cout<<"Local time was properly downloaded"<<'\n';
 
@@ -612,8 +612,10 @@ int main()
     Testing t1;
     virtForTest=&t1;
     double decision;
+
+
     std::cout<<"______________________________________________________________________________"<<'\n';
-    std::cout<<"1.Open file\n2.Save File\n3.Exit Program"<<'\n';
+    std::cout<<"1.Show saved days\n2.Create new days, or add new records\n3.Exit Program"<<'\n';
     virtForTest->doubleTest(decision);
     if(decision==1)
     {
