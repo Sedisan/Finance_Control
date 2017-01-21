@@ -101,7 +101,6 @@ int main()
 			}
 
 			std::cin.get();
-			std::cout << "BLALALALALA" << '\n';
 
 
 			int howMany = virtForOpen->opening(convertWhicht);
