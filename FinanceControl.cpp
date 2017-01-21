@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <mutex>
+#include <thread>
 #include "Header.h"
 
 #define AUTHOR "Szymon Ryl"
@@ -14,6 +16,10 @@
 
 int main()
 {
+	
+	std::mutex mtx;
+	
+	
 	std::cout << "______________________________________________________________________________" << '\n';
 	ConnectTime cObj;
 	FinaleObserwing fObj(&cObj);
@@ -41,19 +47,26 @@ int main()
 	virtForTest->doubleTest(decision);
 	if (decision == 1)
 	{
+		std::thread threadForConvert;
+		std::thread threadForIssetRecord;
+		
 		if (!std::cin)std::cin.ignore();
 		double userDecision;
 		printf("%s", "Show day, select 1.\n Show days, enter 2.\n Back? Press 3.\n");
-		
-		virtForTest->doubleTest(userDecision);
+		mtx.lock();
+		threadForConvert=std::thread(virtForTest->doubleTest,userDecision);
+		threadForIssetRecord = std::thread(virtForOpen->issetRecord,concatenation, 1);
+		threadForConvert.join();
+		threadForIssetRecord.join();
 		int property = virtForTest->doubleToInt(userDecision);
+		mtx.unlock();
 		if (property == 3)main();
 
 		VirtualOpening *virtForOpen;
 		ClassForOpening oP;
 		virtForOpen = &oP;
 
-		virtForOpen->issetRecord(concatenation, 1);
+		
 
 		if (property == 1)
 		{
