@@ -49,7 +49,9 @@ int main()
 	{
 		std::thread threadForConvert;
 		std::thread threadForIssetRecord;
-		
+		VirtualOpening *virtForOpen;
+		ClassForOpening oP;
+		virtForOpen = &oP;
 		if (!std::cin)std::cin.ignore();
 		double userDecision;
 		printf("%s", "Show day, select 1.\n Show days, enter 2.\n Back? Press 3.\n");
@@ -62,9 +64,7 @@ int main()
 		mtx.unlock();
 		if (property == 3)main();
 
-		VirtualOpening *virtForOpen;
-		ClassForOpening oP;
-		virtForOpen = &oP;
+		
 
 		
 
