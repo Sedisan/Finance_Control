@@ -1,1 +1,2 @@
 This is very simple program. Written 2 days, even shorter. Since is simple, I add Obserwer pattern and a few test. So fun.
+When you'll show days, enter one day less than normal.
