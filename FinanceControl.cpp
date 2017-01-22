@@ -56,8 +56,8 @@ int main()
 		double userDecision;
 		printf("%s", "Show day, select 1.\n Show days, enter 2.\n Back? Press 3.\n");
 		mtx.lock();
-		threadForConvert=std::thread(virtForTest->doubleTest,userDecision);
-		threadForIssetRecord = std::thread(virtForOpen->issetRecord,concatenation, 1);
+		threadForConvert=std::thread([&]{virtForTest->doubleTest(userDecision);});
+		threadForIssetRecord = std::thread([&]{virtForOpen->issetRecord(concatenation, 1);});
 		threadForConvert.join();
 		threadForIssetRecord.join();
 		int property = virtForTest->doubleToInt(userDecision);
